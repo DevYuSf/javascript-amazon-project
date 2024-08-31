@@ -55,6 +55,9 @@ productsHTML += `
 `
 });
 
+
+const addedMessageTimeouts = {};
+
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
 document.querySelectorAll(".js-add-to-cart")
@@ -62,17 +65,15 @@ document.querySelectorAll(".js-add-to-cart")
     button.addEventListener("click",()=>{
 
         const productId = button.dataset.productId;
+
         let cartQuantity = 0;
+
         let selectedQuantity=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+        
         let addedToCart = document.querySelector(`.js-added-to-cart-${productId}`).classList.add("addedToCart");
 
-        setTimeout(()=>{
-            document.querySelector(`.js-added-to-cart-${productId}`).classList.remove("addedToCart")
-           },2000);
-
-        clearTimeout(()=>{
-            document.querySelector(`.js-added-to-cart-${productId}`).classList.remove("addedToCart")
-        },2000);  
+        
+         
         let machingItem;
 
         cart.forEach((item)=>{
@@ -99,6 +100,23 @@ document.querySelectorAll(".js-add-to-cart")
         document.querySelector(".js-cart-quantity")
             .innerHTML = cartQuantity;
 
-       
+        //
+        setTimeout(()=>{
+            // Check if there's a previous timeout for this
+            // product. If there is, we should stop it.
+            const previousTimeoutId = addedMessageTimeouts[productId];
+            if (previousTimeoutId) {
+                clearTimeout(previousTimeoutId);
+            }
+
+            const timeoutId = setTimeout(() => {
+                //addedMessage.classList.remove('added-to-cart-visible');
+                document.querySelector(`.js-added-to-cart-${productId}`).classList.remove("addedToCart")
+           },2000);
+        });
+
+        // Save the timeoutId for this product
+      // so we can stop it later if we need to.
+      addedMessageTimeouts[productId] = timeoutId;
     })
 });
