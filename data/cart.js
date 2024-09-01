@@ -3,9 +3,9 @@ export const cart = [];
 export function addToCart(productId){
     let machingItem;
 
-        cart.forEach((item)=>{
-            if (productId === item.productId) {
-                machingItem = item;
+        cart.forEach((cartItem)=>{
+            if (productId === cartItem.productId) {
+                machingItem = cartItem;
             }
         });
 
