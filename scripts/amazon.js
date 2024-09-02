@@ -70,7 +70,6 @@ productsHTML += `
 });
 
 
-const addedMessageTimeouts = {};
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
@@ -79,63 +78,8 @@ document.querySelectorAll(".js-add-to-cart")
     button.addEventListener("click",()=>{
 
         const productId = button.dataset.productId;
-<<<<<<< HEAD
         addToCart(productId);
         updateCartQuantity();
-=======
-
-        let cartQuantity = 0;
-
-        let selectedQuantity=Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
         
-        let addedToCart = document.querySelector(`.js-added-to-cart-${productId}`).classList.add("addedToCart");
-
-        
-         
-        let machingItem;
-
-        cart.forEach((item)=>{
-            if (productId === item.productId) {
-                machingItem = item;
-            }
-        });
-
-        if (machingItem) {
-            machingItem.quantity+=selectedQuantity;
-        } else {
-            cart.push({
-            productId:productId,
-            quantity:selectedQuantity
-        });
-        } 
-
-        
-
-        cart.forEach((item)=>{
-            cartQuantity+=item.quantity;
-        });
-
-        document.querySelector(".js-cart-quantity")
-            .innerHTML = cartQuantity;
-
-        //
-        setTimeout(()=>{
-            // Check if there's a previous timeout for this
-            // product. If there is, we should stop it.
-            const previousTimeoutId = addedMessageTimeouts[productId];
-            if (previousTimeoutId) {
-                clearTimeout(previousTimeoutId);
-            }
-
-            const timeoutId = setTimeout(() => {
-                //addedMessage.classList.remove('added-to-cart-visible');
-                document.querySelector(`.js-added-to-cart-${productId}`).classList.remove("addedToCart")
-           },2000);
-        });
-
-        // Save the timeoutId for this product
-      // so we can stop it later if we need to.
-      addedMessageTimeouts[productId] = timeoutId;
->>>>>>> 47dd75a3307548baf0ff3fcdb6c437619dc81114
     })
 });
