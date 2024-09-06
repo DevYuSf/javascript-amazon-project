@@ -58,3 +58,15 @@ export function calculateCartQuantity(){
     });
     return cartQuantity;
 }
+
+export function updateDeliveryOptions(productId,deliveryOptionId) {
+    let machingItem;
+
+        cart.forEach((cartItem)=>{
+            if (productId === cartItem.productId) {
+                machingItem = cartItem;
+            }
+        });
+    machingItem.deliveryOptionId = deliveryOptionId;
+    saveToStorage();
+}
