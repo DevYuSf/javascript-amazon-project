@@ -3,12 +3,10 @@ import { products,getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utily/money.js';
 import {deliveryOptions,getDeliveryOption} from '../../data/deliveryOptions.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-
+import { renderPaymentSummary } from './paymentSummary.js';
 
 export function renderOrderSummary(){
     let cartSummary = '';
-
-
 
     cart.forEach((cartItem)=>{
         //console.log(cartItem)
@@ -80,6 +78,7 @@ export function renderOrderSummary(){
                 );
                 product.remove();
                 updateCartQuantity();
+                renderPaymentSummary();
             })
         });
 
@@ -135,6 +134,7 @@ export function renderOrderSummary(){
                 const {productId,deliveryOptionId} = element.dataset;
                 updateDeliveryOptions(productId,deliveryOptionId);
                 renderOrderSummary();
+                renderPaymentSummary();
             })
         });
 
