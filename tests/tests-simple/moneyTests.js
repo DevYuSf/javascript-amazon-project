@@ -1,4 +1,4 @@
-import { formatCurrency } from "../scripts/utily/money.js";
+import { formatCurrency } from "../../scripts/utily/money.js";
 console.log("Test suite: formatCurrency")
 console.log("rounding to the nearest cents")
 if (formatCurrency(2000.4) === "20.00") {
