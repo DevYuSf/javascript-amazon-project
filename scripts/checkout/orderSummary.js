@@ -130,7 +130,7 @@ export function renderOrderSummary(){
             document.querySelector(".js-return-to-home-link").innerHTML=`${calculateCartQuantity()} items`
         
     };
-   
+   updateCartQuantity();
 
     document.querySelectorAll('.js-delivery-option')
         .forEach((element)=>{

@@ -62,7 +62,7 @@ export function calculateCartQuantity(){
         cartQuantity+=cartItem.quantity;
     });
     return cartQuantity;
-}
+};
 
 export function updateDeliveryOptions(productId,deliveryOptionId) {
     let machingItem;
