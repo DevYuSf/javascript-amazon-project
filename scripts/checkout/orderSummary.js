@@ -82,6 +82,7 @@ export function renderOrderSummary(){
                     `.js-cart-item-container-${productId}`
                 );
                 product.remove();
+                updateCartQuantity()
                 renderPaymentSummary();
             })
         });
